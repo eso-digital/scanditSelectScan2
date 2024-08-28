@@ -22,8 +22,6 @@
                         <attributeType name="String"/>
                     </attributeTypes>
                 </property>
-            </propertyGroup>
-                <propertyGroup caption="Outputs">
                 <property key="image" type="attribute">
                     <caption>ImageURI</caption>
                     <description>The attribute that will receive the screenshot in URI Image.</description>
