@@ -79,7 +79,7 @@ export default class ScanditSelectScan extends Component {
 
     // Register a listener to get informed whenever a new barcode got recognized.
     this.barcodeSelection.addListener({
-      didUpdateSelection: (barcodeSelection, session, _) => {
+      didUpdateSelection: async (barcodeSelection, session, _) => {
         const barcode1 = session.newlySelectedBarcodes[0];
 
         if (!barcode1) { return }
@@ -95,7 +95,7 @@ export default class ScanditSelectScan extends Component {
           }, 500);
         }); 
         this.props.barcode.setValue(barcode1.data.toString());
-        this.setImageProps(_);
+        await this.setImageProps(_);
         executeAction(this.props.onDetect);
       }
     });
@@ -113,26 +113,22 @@ export default class ScanditSelectScan extends Component {
     try{
       const frame = await getLastFrame();
       const imageBuffer = frame._imageBuffers[0].data;
+      this.props.image.setValue(imageBuffer.toString('base64'));
  
-      const base64String = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
- 
-      await Image.getSize(base64String, (width, height) => {
-        this.setState({ imageWidth: width, imageHeight: height });
-        this.props.height.setValue(height);
-        this.props.width.setValue(width);
- 
-      })
-      .catch(error => {
-        console.error('Error getting image size: ', error);
+      // const base64String = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+      
+      const { width, height } = await new Promise((resolve, reject) => {
+        Image.getSize(base64String, (width, height) => {
+          resolve({ width, height });
+        }, reject);
       });
+  
+      this.setState({ imageWidth: width, imageHeight: height });
+      this.props.height.setValue(height.toString());
+      this.props.width.setValue(width.toString());
  
-      ImageResizer.createResizedImage(base64String, this.state.imageWidth, this.state.imageHeight, 'JPEG', 25)
-        .then(resizedImage => {
-          this.props.image.setValue(resizedImage);
-        })
-        .catch(error => {
-          console.error('Error compressing image: ', error);
-        });
+      // const resizedImage = await ImageResizer.createResizedImage(base64String, width, height, 'JPEG', 25);
+      // this.props.image.setValue(resizedImage.toString('base64'));
     }
     catch(error) {
       console.error('Error saving image. ', error);
