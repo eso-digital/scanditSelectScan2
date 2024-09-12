@@ -1,4 +1,4 @@
-import React, { Component, createElement, createRef } from "react";
+import React, { Component, createElement, createRef } from 'react';
 import { AppState, BackHandler, SafeAreaView, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import {
   BarcodeSelection,
@@ -17,8 +17,8 @@ import { requestCameraPermissionsIfNeeded } from './camera-permission-handler';
 // Enter your Scandit License key here.
 // Your Scandit License key is available via your Scandit SDK web account.
 
-//const licenseKey = this.props.LicenceKey;
-const licenseKey = "AVZ0QT8EGjghLUEgsA7SdiIJ0uLtD41dKwkKZ4ItOpATcdzJe17+YqtUF2Dxd2Q7bzNdQ6MmCCTIELZLpnHEOWJRFd3lM+foxDzU2jo1eo8aPDtuG3X/NgdfonIREm53M0WFrtZHHzPAfqVgbSj1fQVN9rfoZoqTeyzEmfME939lcGlVnlchNK1MXtiJdx9luBs8155SFUDXExN3j27cVWZU22NxbvAFLiDPBoYvrojYEAB9Klhm29FHoSz9RbHNLUK2QgdeLhNGRPX4tHTSWoFm7DnwaV8VHFh4hFV9obkeAf7MsCn/xZQD9zuAfSbpMEXLzGBks1X7GuYnEXcyrdR9tEtQVyoXR08BkUBVdvv4BXuoX2Ksyy4KlGR+TGITJyBLv11YaVcuN8FzmU4GPfQhYJO6VjhnEA6hE1AxSoj+UUw5DV8qRCdO6QgBc+PD0XCfhsNpJIpDe5J08gBPwD5hleo1YjMpDnietlcs1PcLG/8sh2rN1pRwFdInXMpafEN5YeUn9YqncZXWMHmMEY83cJQ0aCOgT0Nv1keiLMLWrFVwyoLdT0LoCeCYVBJtXboXPIymg19X3JDdUQtgF6GEQyKgrIOR1CvioRAaLKzQIwo4BeSIT8N13YdTcAsMXOr09csUY/mQCKYPMzFvdUfRctriDAVF2pfiIK7rdImNqAS57RTvRw3I/BJytkk5NG6p5PelF/0fry6IRNvMvAKyEoWYg8DrN7E4TCmrUX5X1hi7f8IvScFtVJrCHnb/A9uM4Gn5ZDkwqtRoozMoLE6//oEtugNj7yFQRI2wPYeKwrySiwMxI7lWo7/AClA1CKhJv3i01Ix+ARGpvgxn/wLZDjvZxFUbSczM7ABF410fF5d3rtpv6iwP4k5003MlFrVG44ZpChUDtca3p6XF4gRi44RfMy0YZOh03MsCxmEMAyrox3GrsAf3HgefOdOkh0Mb6tiQONp3T7pXKETR8jM7U89WrYc0qL41SWX+/q9rSgJSl1wsDYAknNjOLPJePijv5kVxPgzPoBXMOAHXW8Hdyawljzl+d/FvNlL/BJM5h1SlNbIjMLP2bqTuFcIzehRB08vAbZGnvSnVu0ZQ+bbdjTc4E3E/0xfz/qg3WEjKxbx1C0sJrJAqL03meiNvoOdLvldL/uU19DbQbQhBEz6BPhnjsVuEsiMkilv1aR+VZglF97TRXwmegMXAE5olpfJ84USMd/9TCrNr";
+const licenseKey = this.props.LicenceKey;
+//const licenseKey = 'AaUlUxUlMDHlF+VHIwzhnXgTOLvlOWULCwSqDxE3qXf7acTOhmyj10pWhqnyWVrs7kC4760YbAcMUi1NA1/z6hxAoqM0BIqpBS0l5JAuIJioPtrav2rZVe1fUBfucCJJQDrtGIFv3KQ2X08IVRUlKqZHYqB2Sw8cDkioCgtmdueXfkUscXSrwLdnpnqfZiBsYVk95CxTg1mKBgh6cVqIUlVe4ArQbAk8umpCujJJc75VUZTheWhH5u4Qr6yiWwffc3BDDwxnFpO1YKdTo3D2wHBUutfDdCo5FwNSa/pRC3hQddLzj0ll081SLJtyeMEUNWo/TqAkNZ4pY3dydViaJDJaXGaiV24xu1fJXT5bTjyDRvMLUVN8huxOQJFaVMA8/gDPZZV37jhfR+ubPmFlcM5S6CTaZtZJhEOiv+1BtSlJY/dNtiwE3DN4y3YBcrGRKT5hJqRRk2nnWWHE9ENVE65qeLeUeqOQlWkvjAtDZSekRYnlbX75RBB+EDz2OdqlYFyLYUQNHT4SNwpKvC83sPZhaz//QSYFABnrD1wwg9Lu8KIosuUHfMkKXsyAcXCAIVvQwn+QKBViRp9uT8w5KwYDFYvUOBH32aUZYDSytYuw8A66ensEDvK0yEXmFfIjvCMMBsNidFjrPO739mNE/vlM5nuhyZzE0n2pxjmQUug0cIL5HnWROzXl5clMsxQkILgzIILUAlG8ziVx7mF8cLmrBAvteunBs8bdVkWLKORKZ10zqrHPjJKSz6wm+kSTGRn7HKjlZ/cRPjQ3L1fUnzYLwIVwrlGKAeipXgxBkCwmhYDydVT1P+APrq2Xn+HiLPeSZG+5nGs9bzaj5D12gI8cYgwaP6vnucbN9ezAjQP50ok1j40AuB9TsaK3Pjcz6UA85fxlVqaztcxt9juE6R1aG4daACrpYke5Z1nfLlav6LW1HVk4CFDbePCQI2fMN0YkvvG8kzV8hD3+hxfJgqHiom5ipvRYq305lWGusADy76t9J+hI+VG9DS+DNPhe0lqwcnjxaqZV05r5c4AKULxkS2z7Sta0Onsz4KFxLC+GPtoLddl8vhq8vrrIx1XYbkDOOdoueYwoI1Zbx7G4ixeUJ74dqF7z7SG/fItYU4wJqN2OaD5MwK27a2htPVjEAB8VmfjQXCpGP8d/HfIfccYBfPvoFCctAC8dkduYtsIOycjSN9zh9GACjZCV13LJ4h08OV9qvYXeIw==';
 
 const SelectionType = {
   tap: 'tap',
@@ -34,9 +34,7 @@ const executeAction = action => {
 export default class ScanditSelectScan extends Component {
   state = {
     selectionType: SelectionType.tap,
-    result: null,
-    imageHeight: undefined,
-    imageWidth: undefined
+    result: null
   }
 
   constructor(props) {
@@ -79,7 +77,7 @@ export default class ScanditSelectScan extends Component {
 
     // Register a listener to get informed whenever a new barcode got recognized.
     this.barcodeSelection.addListener({
-      didUpdateSelection: (barcodeSelection, session, _) => {
+      didUpdateSelection: async (_, session, framePromise) => {
         const barcode1 = session.newlySelectedBarcodes[0];
 
         if (!barcode1) { return }
@@ -92,11 +90,11 @@ export default class ScanditSelectScan extends Component {
           //executeAction(this.props.onDetect);
           setTimeout(() => {
             this.setState({ result: null });
-          }, 500);
+          }, 2000);
         }); 
         this.props.barcode.setValue(barcode1.data.toString());
-        this.setImageProps(_);
-        executeAction(this.props.onDetect);
+        await this.setImageProps(framePromise);
+        console.warn('Continuing after setImageProps');
       }
     });
 
@@ -111,28 +109,37 @@ export default class ScanditSelectScan extends Component {
 
   async setImageProps(getLastFrame) {
     try{
-      const frame = await getLastFrame();
+      var frame;
+      try {
+        frame = await getLastFrame();
+      }
+      catch(error) {
+        console.error('Frame has been consumed before processing. Try again');
+        return;
+      }
+
+      console.warn('Getting buffer');
       const imageBuffer = frame._imageBuffers[0].data;
- 
+      console.warn('Image Buffer:', imageBuffer.slice(0, 30));
+
       const base64String = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
- 
-      await Image.getSize(base64String, (width, height) => {
-        this.setState({ imageWidth: width, imageHeight: height });
-        this.props.height.setValue(height);
-        this.props.width.setValue(width);
- 
-      })
-      .catch(error => {
-        console.error('Error getting image size: ', error);
+      
+      const { width, height } = await new Promise((resolve, reject) => {
+        Image.getSize(base64String, (width, height) => {
+          resolve({ width, height });
+        }, reject);
       });
+      console.warn('Got size', width, height);
+  
+      this.props.height.setValue(height.toString());
+      this.props.width.setValue(width.toString());
+
+      console.warn('Set dimensions');
  
-      ImageResizer.createResizedImage(base64String, this.state.imageWidth, this.state.imageHeight, 'JPEG', 25)
-        .then(resizedImage => {
-          this.props.image.setValue(resizedImage);
-        })
-        .catch(error => {
-          console.error('Error compressing image: ', error);
-        });
+      const resizedImage = await ImageResizer.createResizedImage(base64String, width, height, 'JPEG', this.props.compressionPercentage);
+      //const fileBuffer = await RNFS.readFile(resizedImage.uri, 'base64');
+      this.props.image.setValue(resizedImage.uri);
+      executeAction(this.props.onDetect);
     }
     catch(error) {
       console.error('Error saving image. ', error);
