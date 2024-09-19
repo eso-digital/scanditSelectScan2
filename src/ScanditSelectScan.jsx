@@ -1,5 +1,5 @@
 import React, { Component, createElement, createRef } from 'react';
-import { AppState, BackHandler, Text } from 'react-native';
+import { AppState, BackHandler, Text, Image } from 'react-native';
 import {
   BarcodeSelection,
   BarcodeSelectionAimerSelection,
